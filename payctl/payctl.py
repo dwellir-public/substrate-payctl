@@ -4,8 +4,6 @@ from collections import OrderedDict
 from substrateinterface import SubstrateInterface
 
 from .utils import *
-from .twitter import Twitter
-
 
 #
 # cmd_list - 'list' subcommand handler.
@@ -169,9 +167,6 @@ def cmd_pay(args, config):
             extrinsic=extrinsic,
             wait_for_inclusion=True
         )
-
-        tweet_text = Twitter.generate_tweet_text(eras_payment_info, get_config(args, config, 'network'))
-        Twitter(config).update_status(tweet_text)
 
         fees = extrinsic_receipt.total_fee_amount
 
